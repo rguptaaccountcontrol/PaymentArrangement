@@ -1,6 +1,6 @@
 # This workflow will publish the bot
 
-name: Publish_FlexSTG_FN Twilio Bot
+name: Publish_STG_FN Twilio Bot
 
 on:
   workflow_dispatch:
