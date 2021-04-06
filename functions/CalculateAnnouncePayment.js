@@ -105,7 +105,7 @@ exports.handler = async function (context, event, callback) {
       "on_complete": {
         "redirect": {
           "method": "POST",
-          "uri": "https://paymentarrangement-7226-dev.twil.io/PaymentFrequency"
+          "uri": "https://paymentarrangement-1122-dev.twil.io/PaymentFrequency"
         }
       }
     };
