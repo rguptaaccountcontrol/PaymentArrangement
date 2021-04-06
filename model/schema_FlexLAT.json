@@ -1,0 +1,444 @@
+{
+    "friendlyName" : "Payment_Arrangement_MainIVR_Bot",
+    "logQueries" : true,
+    "uniqueName" : "Payment_Arrangement_MainIVR_Bot",
+    "defaults" : {
+        "defaults" : {
+            "assistant_initiation" : "task://greeting",
+            "fallback" : "task://fallback",
+            "collect" : {
+                "validate_on_failure" : "task://collect_fallback"
+            }
+        }
+    },
+    "styleSheet" : {
+        "style_sheet" : {
+            "collect" : {
+                "validate" : {
+                    "on_failure" : {
+                        "repeat_question" : false,
+                        "messages" : [
+                            {
+                                "say" : {
+                                    "speech" : "I didn't get that. What did you say?"
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "I still didn't catch that. Please repeat."
+                                }
+                            },
+                            {
+                                "say" : {
+                                    "speech" : "Let's try one last time. Say it again please."
+                                }
+                            }
+                        ]
+                    },
+                    "on_success" : { "say" : { "speech" : "" } },
+                    "max_attempts" : 4
+                }
+            },
+            "voice" : {
+                "say_voice" : "Polly.Joanna-Neural"
+            },
+            "name" : ""
+        }
+    },
+    "fieldTypes" : [
+        {
+            "uniqueName" : "PayFreq",
+            "values" : [
+                {
+                    "language" : "en-US",
+                    "value" : "weekly",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "biweekly",
+                    "synonymOf" : null
+                },
+                {
+                    "language" : "en-US",
+                    "value" : "monthly",
+                    "synonymOf" : null
+                }
+            ]
+        }
+    ],
+    "tasks" : [
+        {
+            "uniqueName" : "goodbye",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Thank you! Please reach out again if you need anything. Goodbye."
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all for today"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that would be all thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "cancel"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that is all thank you"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodbye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "go away"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop talking"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "goodnight"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no thanks"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "that's all"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "no"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "bye bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good bye"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "see ya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "stop"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "I'm sorry didn't quite get that. Please say that again."
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "collect_fallback",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "Looks like I'm having trouble. Apologies for that. Let's start again, how can I help you today?"
+                    },
+                    { "listen" : true }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "greeting",
+            "actions" : {
+                "actions" : [
+                    {
+                        "collect" : {
+                            "on_complete" : {
+                                "redirect" : "task://paymentArrangement"
+                            },
+                            "name" : "collect_comments",
+                            "questions" : [
+                                {
+                                    "validate" : {
+                                        "on_failure" : {
+                                            "repeat_question" : false,
+                                            "messages" : [{ "say" : "" }]
+                                        },
+                                        "max_attempts" : {
+                                            "redirect" : "task://AgentTransfer",
+                                            "num_attempts" : 0
+                                        },
+                                        "on_success" : { "say" : "" },
+                                        "allowed_values" : {
+                                            "list" : [
+                                                "pay",
+                                                "payment",
+                                                "arrangement",
+                                                "payment Arrangement",
+                                                "Payment arrangement",
+                                                "payment arrangement",
+                                                "payment Arrangement"
+                                            ]
+                                        }
+                                    },
+                                    "question" : "say the reason to transfer to an agent, So I can transfer your call appropriately , , If you want to make a payment arrangement, , , say payment or payment arrangement, ,",
+                                    "name" : "comments"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good afternoon"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "good morning"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "heya"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hello"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi there"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hello."
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Hi"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "whatsup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what'us up"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what can you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "what do you do"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "sup"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hi!"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "yo"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "hey"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "change"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "having-trouble",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : "This is your having-trouble Task"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "CalculateAnnouncePayment",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : {
+                            "method" : "POST",
+                            "uri" : "https://paymentarrangement-7226-dev.twil.io/CalculateAnnouncePayment"
+                        }
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "PaymentPlanAnnounce",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : {
+                            "method" : "POST",
+                            "uri" : "https://paymentarrangement-7226-dev.twil.io/PaymentPlanAnnounce"
+                        }
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : []
+        },
+        {
+            "uniqueName" : "AgentTransfer",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : {
+                            "method" : "POST",
+                            "uri" : "https://paymentarrangement-7226-dev.twil.io/AgentTransfer"
+                        }
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Want to talk to an agent"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "representative"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "customer service"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "customer"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "I speak to a representative"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "DummyTask",
+            "actions" : {
+                "actions" : [
+                    {
+                        "say" : {
+                            "speech" : "You will be on dummy."
+                        }
+                    },
+                    { "listen" : true },
+                    { "remember" : {} }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "dummy"
+                }
+            ]
+        },
+        {
+            "uniqueName" : "PaymentArrangement",
+            "actions" : {
+                "actions" : [
+                    {
+                        "redirect" : "https://paymentarrangement-7226-dev.twil.io/PaymentArrangement"
+                    }
+                ]
+            },
+            "fields" : [],
+            "samples" : [
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Payment Arrangement"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Payment"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "pay"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "P"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "payment arrangement"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "Payment arrangement"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "payment"
+                },
+                {
+                    "language" : "en-US",
+                    "taggedText" : "payment arrangements"
+                }
+            ]
+        }
+    ],
+    "modelBuild" : {
+        "uniqueName" : "Payment_Arrangement_MainIVR_Bot_30-3-2021_1.57.02am"
+    }
+}
