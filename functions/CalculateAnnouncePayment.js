@@ -72,15 +72,6 @@ exports.handler = async function (context, event, callback) {
     Remember.FP = FP;
     Remember.InstallmentPayment = InstallmentPayment;
 
-    //let RedirectURL="";
-    // if(NP==1)
-    // {
-    //   RedirectURL="https://paymentarrangement-5311.twil.io/GetStartDate";
-    // }
-    // else
-    // {
-    //   RedirectURL="https://paymentarrangement-5311.twil.io/PaymentFrequency";
-    // }
     Collect = {
       "name": "collect_Payment_Arrangement",
       "questions": [
@@ -114,7 +105,7 @@ exports.handler = async function (context, event, callback) {
       "on_complete": {
         "redirect": {
           "method": "POST",
-          "uri": "https://paymentarrangement-5311.twil.io/PaymentFrequency"
+          "uri": "https://paymentarrangement-7226-dev.twil.io/PaymentFrequency"
         }
       }
     };

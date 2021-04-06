@@ -28,7 +28,7 @@ exports.handler = async function (context, event, callback) {
       Redirect = {
         //"redirect": {
         "method": "POST",
-        "uri": "https://paymentarrangement-5311.twil.io/GetStartDate"
+        "uri": "https://paymentarrangement-7226-dev.twil.io/GetStartDate"
       }
       //}
       Collect = false;
@@ -78,7 +78,7 @@ exports.handler = async function (context, event, callback) {
         "on_complete": {
           "redirect": {
             "method": "POST",
-            "uri": "https://paymentarrangement-5311.twil.io/GetStartDate"
+            "uri": "https://paymentarrangement-7226-dev.twil.io/GetStartDate"
           }
         }
       };
