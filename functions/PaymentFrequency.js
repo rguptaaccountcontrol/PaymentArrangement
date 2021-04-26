@@ -52,7 +52,7 @@ exports.handler = async function (context, event, callback) {
             },
             "validate": {
               "allowed_values": {
-                "list": ["weekly", "biweekly", "bi-weekly", "monthly"]
+                "list": ["weekly", "biweekly", "bi-weekly", "monthly","Weekly", "Biweekly", "Bi-weekly", "Monthly","Weekly.", "Biweekly.", "Bi-weekly.", "Monthly."]
               },
               "on_failure": {
                 "messages": [
