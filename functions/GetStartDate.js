@@ -27,7 +27,7 @@ exports.handler =async function(context, event, callback) {
      Freq=Freq.toLowerCase();
      Freq=Freq.replace(".","");
   }
-  
+  console.log("Freq: "+Freq);
   //////////////////////
   // set the frequency code for what is used on FACS
   switch (Freq){
