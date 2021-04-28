@@ -17,7 +17,7 @@ exports.handler = async function (context, event, callback) {
     // Add your code here.  
     let TotalPayment = Number(Memory.PaymentAmt).toFixed(2);
     console.log('TotalPayment ' + TotalPayment);
-    let NP = Memory.twilio.collected_data.collect_Payment_Arrangement.answers.NumberOfPayments.answer;
+    let NP =Number(Memory.twilio.collected_data.collect_Payment_Arrangement.answers.NumberOfPayments.answer);
     console.log(NP);
     let InstallmentPayment = 0.0;
     let Remainder = 0.0;
@@ -81,7 +81,7 @@ exports.handler = async function (context, event, callback) {
           "name": "IsAffordable",
           "validate": {
             "allowed_values": {
-              "list": ["change", "ok", "yes", "okay", "Okay.", "Yes."]
+              "list": ["change","Change","Change.", "ok", "yes", "okay", "Okay.", "Yes."]
             },
             "on_failure": {
               "messages": [

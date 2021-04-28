@@ -29,6 +29,8 @@ exports.handler = async function (context, event, callback) {
     }
     else {
       Frequency = Memory.twilio.collected_data.collect_Payment_Arrangement.answers.Frequency.answer;
+       Frequency=Frequency.toLowerCase();
+      Frequency=Frequency.replace(".","");
     }
     Remember.Frequency = Frequency;
     Remember.start_date = start_date;
@@ -36,6 +38,7 @@ exports.handler = async function (context, event, callback) {
     console.log('start_date:' + start_date);
     console.log('InstallmentPayment: ' + InstallmentPayment);
     console.log(FP);
+    console.log("Frequency: "+Frequency);
 
     /////////////////////// Calculate installment_date
 
