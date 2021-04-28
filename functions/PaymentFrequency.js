@@ -23,6 +23,8 @@ exports.handler = async function (context, event, callback) {
     let Remainder = 0.0;
     let FP = 0.0;
     let IsAffordable = Memory.twilio.collected_data.collect_Payment_Arrangement.answers.IsAffordable.answer;
+    IsAffordable = IsAffordable.toLowerCase();
+    IsAffordable = IsAffordable.replace(".", "");
     Remember.IsAffordable;
     if (NP == 1) {
       Redirect = {
@@ -52,7 +54,7 @@ exports.handler = async function (context, event, callback) {
             },
             "validate": {
               "allowed_values": {
-                "list": ["weekly", "biweekly", "bi-weekly", "monthly","Weekly", "Biweekly", "Bi-weekly", "Monthly","Weekly.", "Biweekly.", "Bi-weekly.", "Monthly."]
+                "list": ["weekly", "biweekly", "bi-weekly", "monthly", "Weekly", "Biweekly", "Bi-weekly", "Monthly", "Weekly.", "Biweekly.", "Bi-weekly.", "Monthly."]
               },
               "on_failure": {
                 "messages": [
