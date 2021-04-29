@@ -81,7 +81,7 @@ exports.handler = async function (context, event, callback) {
           "name": "IsAffordable",
           "validate": {
             "allowed_values": {
-              "list": ["change", "ok", "yes", "okay", "Okay.", "Yes."]
+              "list": ["change","Change","Change.", "ok", "yes", "okay", "Okay.", "Yes."]
             },
             "on_failure": {
               "messages": [
